@@ -37,6 +37,11 @@ class Album {
     }
 }
 
+enum MusicError: Error, Equatable {
+    case emptyTrackList
+    case emptyTrack(songTitle: String)
+}
+
 class MusicPlayer {
     var album: Album
     
@@ -44,15 +49,19 @@ class MusicPlayer {
         self.album = album
     }
     
-    func playAlbum() {
-        print("Playing album: \(album.title) by \(album.artist)")
+    func playAlbum() throws(MusicError) {
+        guard !album.songs.isEmpty else {
+            throw .emptyTrackList
+        }
         for song in album.songs {
+            guard song.duration > 0 else {
+                throw .emptyTrack(songTitle: song.title)
+            }
             song.play()
         }
     }
     
     func stopAlbum() {
-        print("Stopping album: \(album.title)")
         for song in album.songs {
             song.stop()
         }
