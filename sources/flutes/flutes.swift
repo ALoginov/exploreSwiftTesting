@@ -20,6 +20,10 @@ class Song {
         print("Playing \(title) by \(artist)")
     }
     
+    func playAsynchronously() async {
+        print("Playing \(title) by \(artist)")
+    }
+    
     func stop() {
         print("Stopping \(title)")
     }
@@ -59,6 +63,34 @@ class MusicPlayer {
             }
             song.play()
         }
+    }
+    
+    func playAlbum(with completionBlock: ((Bool) -> Void)) {
+        do {
+            try self.playAlbum()
+            completionBlock(true)
+        } catch {
+            completionBlock(false)
+        }
+    }
+    
+    // Play album with callback
+    func playAlbumAsynchronously(_ callback: ((Song) -> Void)? = nil) async throws(MusicError) -> Int {
+        guard !album.songs.isEmpty else {
+            throw .emptyTrackList
+        }
+        var numSongs: Int = 0
+        for song in album.songs {
+            guard song.duration > 0 else {
+                throw .emptyTrack(songTitle: song.title)
+            }
+            // Start playing
+            await song.playAsynchronously()
+            // Notify
+            callback?(song)
+            numSongs += 1
+        }
+        return numSongs
     }
     
     func stopAlbum() {
