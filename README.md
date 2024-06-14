@@ -8,6 +8,6 @@ swift 5.10, Xcode 16.0 beta 1
 - [x] Custom tag colors 
 - [ ] Time limits 
 - [ ] Parallelization 
-- [ ] Expect thrown errors 
+- [x] Expect thrown errors 
 - [ ] Await for async tasks with `confirmation` 
 - [ ] Bugs  
