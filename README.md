@@ -9,5 +9,5 @@ swift 5.10, Xcode 16.0 beta 1
 - [ ] Time limits 
 - [ ] Parallelization 
 - [x] Expect thrown errors 
-- [ ] Await for async tasks with `confirmation` 
+- [x] Await for async tasks with `confirmation` 
 - [ ] Bugs  
