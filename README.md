@@ -5,7 +5,7 @@ swift 5.10, Xcode 16.0 beta 1
 - [x] Conditional traits
 - [x] Tags
 - [x] Parameterized tests
-- [ ] Custom tag colors 
+- [x] Custom tag colors 
 - [ ] Time limits 
 - [ ] Parallelization 
 - [ ] Expect thrown errors 
